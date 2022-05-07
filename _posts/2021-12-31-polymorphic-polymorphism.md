@@ -75,9 +75,9 @@ id @Char 'a'   {- 'a'  :: Char -}
 
 第一行类型声明中的 `forall a` 引入了一个隐式的类型参数，之所以用这个关键字是因为它对应于逻辑中的全称量化。不过有趣的是，与之对偶的存在量化在 Haskell 中复用了 `forall` 关键字，详见 GHC 的语言扩展 [ExistentialQuantification](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts/existential_quantification.html)。以 `@` 开头的就是显式指定的类型参数，当然，就算我们不写它们也能自动推断出来。
 
-### Hindley-Milner
+### Hindley–Milner
 
-看到上文中的 Haskell 代码，大家可能会产生一个疑问：为什么类型参数默认是隐式的？要回答这个问题，就不得不提 Haskell 所采用的 Hindley-Milner 类型系统。HM 类型系统的最大好处是已有经过证明的算法（Algorithm W）可以做完整的类型推断，所以我们无须显式标注任何类型。不过 HM 类型系统也为此引入了对多态的两大限制：
+看到上文中的 Haskell 代码，大家可能会产生一个疑问：为什么类型参数默认是隐式的？要回答这个问题，就不得不提 Haskell 所采用的 Hindley–Milner 类型系统。HM 类型系统的最大好处是已有经过证明的算法（Algorithm W）可以做完整的类型推断，所以我们无须显式标注任何类型。不过 HM 类型系统也为此引入了对多态的两大限制：
 
 - Rank-1：函数类型里面不可以嵌套多态类型。
 - 直谓性：类型变量不可以实例化为多态类型。
@@ -133,7 +133,7 @@ runST :: (forall s. ST s d) -> d
 runST $ do { …… }  -- a := (forall s. ST s d) -> d
 ```
 
-在这个例子中，`$` 运算符的类型参数 `a` 得实例化成一个多态类型，这样的多态就不是直谓性的。不过好在 GHC 对 `$` 的类型检查进行了特殊处理，这样写并不会报错；如果想亲眼目睹类型错误，可以试试没有经过特殊处理的 `id runST`。从另一个角度来看，直谓多态只支持在 `->` 类型运算符里嵌套多态类型，比如 `(forall a. a) -> ()`；而非直谓多态支持在任何多态类型里嵌套多态类型，比如 `[forall a. a]`。过去十几年来，GHC 的 [ImpredicativeTypes](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts/impredicative_types.html) 扩展都不太好用，最近 GHC 9.2 基于 [ICFP 2020](https://doi.org/10.1145/3408971) 论文中的 Quick Look 算法更好地支持了非直谓多态。在成功突破 HM 类型系统的两大限制之后，经过 GHC 扩展的 Haskell 已经能完整表达比 Hindley-Milner 更强大的 Girard-Reynolds 多态演算了，也就是大名鼎鼎的 System F。
+在这个例子中，`$` 运算符的类型参数 `a` 得实例化成一个多态类型，这样的多态就不是直谓性的。不过好在 GHC 对 `$` 的类型检查进行了特殊处理，这样写并不会报错；如果想亲眼目睹类型错误，可以试试没有经过特殊处理的 `id runST`。从另一个角度来看，直谓多态只支持在 `->` 类型运算符里嵌套多态类型，比如 `(forall a. a) -> ()`；而非直谓多态支持在任何多态类型里嵌套多态类型，比如 `[forall a. a]`。过去十几年来，GHC 的 [ImpredicativeTypes](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts/impredicative_types.html) 扩展都不太好用，最近 GHC 9.2 基于 [ICFP 2020](https://doi.org/10.1145/3408971) 论文中的 Quick Look 算法更好地支持了非直谓多态。在成功突破 HM 类型系统的两大限制之后，经过 GHC 扩展的 Haskell 已经能完整表达比 Hindley–Milner 更强大的 Girard–Reynolds 多态演算了，也就是大名鼎鼎的 System F。
 
 ### 泛型
 
@@ -143,7 +143,7 @@ runST $ do { …… }  -- a := (forall s. ST s d) -> d
 
 C++ 的泛型是通过模板实现的，模板的实例化相当于泛型的单态化。不过 C++ 的模板比一般的泛型更为强大：模板的参数并不局限于类型参数、参数可以有默认值、模板支持特化等等。其中模板特化可以说是参数多态和特设多态的结合体：
 
-```c++
+```cpp
 template<typename T> void f(T x) { /* primary template */ }
 template<> void f(int x) { /* specialization  T := int */ }
 ```
@@ -206,16 +206,16 @@ addFields { foo: 1 }                  -- Type Error!
 
 因为我们在第二行的函数定义中访问了记录的两个字段，所以 PureScript 会像第一行一样将其类型推断为 `{ foo :: Int, bar :: Int | r }`，这里的类型变量 `r` 代表一行类型，也就是该记录尚未知晓的剩余字段，相当于扮演了宽度子类型化（width subtyping）的角色。简而言之，所谓的行多态就是量化范围为「行」的参数多态。
 
-不过要注意：行多态**不能**完全取代子类型！单单使用行多态的一大缺陷是我们无法将不同类型的记录装进同一个容器，个中缘由跟静态实现子类型多态的时候几乎一样。反过来，对于下面基于行多态的记录更新操作：
+不过要注意：行多态**不能**完全取代子类型！单单使用行多态的一大缺陷是我们无法将不同类型的记录装进同一个容器，比如 `[ { x: 1, y: 2 }, { x: 1, z: 3 } ]`，个中缘由跟静态实现子类型多态的时候几乎一样。反过来，对于下面基于行多态的记录更新操作：
 
 ```haskell
 incCount :: forall r. { count :: Int | r } -> { count :: Int | r }
 incCount o = o { count = o.count + 1 }
 
-incCount { count: 0, uuid: "xxx" }  -- { count: 1, uuid: "xxx" }
+(incCount { count: 0, uuid: "xxx" }).uuid  -- "xxx"
 ```
 
-如果我们直接把行多态去掉（删掉 `forall r.` 和 `| r`），就算 PureScript 有子类型多态也达不到原来的效果，因为函数返回值中 `count` 以外的字段都丢失了。这就需要 PureScript 进一步支持有界多态，然后我们把函数签名改成 `forall (a <: { count :: Int }). a -> a` 才行。
+如果我们直接把行多态去掉（删掉 `forall r.` 和 `| r`），就算 PureScript 有子类型多态也无法通过类型检查，因为函数返回类型中 `count` 以外的字段都丢失了。这就需要 PureScript 进一步支持有界多态，然后我们把函数签名改成 `forall a <: { count :: Int }. a -> a` 才行。
 
 除了行多态，其实还有别的方法能支持多态的对象，比如谢宁宁等人在 [ECOOP 2020](https://doi.org/10.4230/LIPIcs.ECOOP.2020.27) 的论文中证明互斥多态（disjoint polymorphism）能够模拟行多态和有界多态。互斥多态借助的利器是交集类型，这一想法可以追溯到 Benjamin Pierce 的博士毕业论文。Rust 之父 Graydon Hoare 对互斥交集类型也很关注，他曾在[推特](https://twitter.com/graydon_pub/status/1327412901276049408)评论道：“Maybe John Reynolds really did almost solve everything at once with Forsythe, if we just manage to get its intersection types right.”
 
