@@ -9,7 +9,13 @@ layout: default
   {% include info.html %}
 
   <div class="entry">
-    {{ content }}
+    {% if page.ruby %}
+      {% assign pattern = '\[([^\]]*)\]\{([^\}]*)\}' %}
+      {% assign replace = '<ruby>\1<rp>（</rp><rt>\2</rt><rp>）</rp></ruby>' %}
+      {{ content | regex_replace: pattern, replace }}
+    {% else %}
+      {{ content }}
+    {% endif %}
   </div>
 
   {% include disqus.html %}

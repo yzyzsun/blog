@@ -75,6 +75,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-redirect-from
   - jekyll-katex
+  - jekyll-regex-replace
 
 # Exclude these files from your production _site
 exclude:
