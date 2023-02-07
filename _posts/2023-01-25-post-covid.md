@@ -1,5 +1,5 @@
 ---
-title: 跟住疫情去旅行
+title: 跟住疫情去游学
 author: 孙耀珠
 tags: 游记
 ruby: true
