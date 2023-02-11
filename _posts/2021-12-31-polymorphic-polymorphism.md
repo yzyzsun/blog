@@ -218,7 +218,7 @@ incCount o = o { count = o.count + 1 }
 
 如果我们直接把行多态去掉（删掉 `forall r.` 和 `| r`），就算 PureScript 有子类型多态也无法通过类型检查，因为函数返回类型中 `count` 以外的字段都丢失了。这就需要 PureScript 进一步支持有界多态，然后我们把函数签名改成 `forall a <: { count :: Int }. a -> a` 才行。
 
-除了行多态，其实还有别的方法能支持多态的对象，比如谢宁宁等人在 [ECOOP 2020](https://doi.org/10.4230/LIPIcs.ECOOP.2020.27) 的论文中证明「[互斥多态]{disjoint polymorphism}」能够模拟行多态和有界多态。互斥多态借助的利器是交集类型，这一想法可以追溯到 Benjamin Pierce 的博士毕业论文。Rust 之父 Graydon Hoare 对互斥交集类型也很关注，他曾在[推特](https://twitter.com/graydon_pub/status/1327412901276049408)评论道：“Maybe John Reynolds really did almost solve everything at once with Forsythe, if we just manage to get its intersection types right.”
+除了行多态，其实还有别的方法能支持多态的对象，比如谢宁宁等人在 [ECOOP 2020](https://doi.org/10.4230/LIPIcs.ECOOP.2020.27) 的论文中证明「[互斥多态]{disjoint polymorphism}」能够模拟行多态和有界多态。互斥多态借助的利器是交集类型，这一想法可以追溯到 Benjamin Pierce 的博士毕业论文。Rust 之父 Graydon Hoare 对互斥交集类型也很关注，他曾在[推特](https://web.archive.org/web/20201114005825/https://twitter.com/graydon_pub/status/1327415381061902339)评论道：“Maybe John Reynolds really did almost solve everything at once with Forsythe, if we just manage to get its intersection types right.”
 
 ## 结语
 
