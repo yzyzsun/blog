@@ -538,3 +538,13 @@ ruby: true
 看上去整理这些眼花缭乱的日韩译音没有什么实际意义，但日韩译音为[重纽](https://byvoid.com/zht/blog/kuangx-yonh-dryung-nriux/)这个学术难题提供了新的线索。简而言之，重纽就是通过系联法确定的同音字却被《切韵》分出了两组不同的小韵；这个现象体现在后世的韵图上就是假四等，即理论上同音的三等字却被分列在了三等和四等的位置。晚清学者往往认为这两组字没什么区别，忽略了这个奇怪的现象，但实际上这两组字的日韩译音有可能不同。
 
 例如「一」「乙」都是影母质韵开口三等入声字，但是它们被《切韵》分在了不同的小韵，被韵图分别列在四等和三等。「一」被称为质韵重纽A类，日语吴音读「いち」，韩语读「일」；「乙」被称为质韵重纽B类，日语吴音读「おつ」，韩语读「을」。日韩译音的不同体现了当时重纽字读音的细微差异，但具体区别在何需要上溯上古汉语有待进一步研究。
+
+## 参考资料
+
+本文所采的中古声母拟音以及中古韵摄的日韩译音均参考《中国传统音韵学》课件，中古声母的[日](https://ja.wikipedia.org/wiki/音読み)[韩](https://ko.wikipedia.org/wiki/한국_한자음)译音则主要参考维基百科，例证中汉字的音韵地位和方言读音参考了[韵典网](https://ytenx.org)、[汉字音典](https://mcpdict.sourceforge.io)、[汉典](https://www.zdic.net)和[维基词典](https://www.wiktionary.org)。除此之外，本文还参考了许多互联网资料，在此难以一一列举，难免挂一漏万：
+
+- [音韻学入門～中古音篇～ - 中村雅之](http://www.for.aichi-pu.ac.jp/museum/pdf/oningaku.pdf)
+- [中古漢語語音敎程 - polyhedron古韻](https://space.bilibili.com/3957493/channel/collectiondetail?sid=1174004)
+- [如何利用汉语读音推断日语汉字音读 - shuyu cheng](https://zhuanlan.zhihu.com/p/106570805)
+- [一小时入门韩语汉字音 - 王赟 Maigo](https://www.zhihu.com/lives/937696958148743168)
+- [声母、韵母、声调对照表 -  王赟 Maigo](https://www.zhihu.com/question/27397379/answer/36488907)
