@@ -9,7 +9,7 @@ ruby: true
 
 英语里有个单词叫做 [autological](https://en.wikipedia.org/wiki/Autological_word)，是说一个词可以形容其本身，比方说「名词」本身就是个名词，「阳平」这两个字的声调本身就是阳平，而「多态」本身也很多态。编程语言中最常见的多态有四种：**特设多态**、**参数多态**、**子类型多态**和**行多态**。通俗来讲，只要是为不同类型的数据或操作提供了相同的名字就可以叫多态。
 
-本文只是一篇科普性质的文章，所以基本上只以实际编程语言为例，不会用任何形式化的语言来描述这些类型系统。如果希望深入学习相关的理论知识，建议阅读 [TAPL](https://www.cis.upenn.edu/~bcpierce/tapl/) 或者 [PFPL](https://www.cs.cmu.edu/~rwh/pfpl/)。
+本文只是一篇科普性质的文章，所以基本上只以实际编程语言为例，不会用任何形式化的语言来描述这些类型系统。如果希望深入学习相关的理论知识，建议阅读 [TAPL](https://www.cis.upenn.edu/~bcpierce/tapl/) 或者 [PFPL](https://www.cs.cmu.edu/~rwh/pfpl/)；Giuseppe Castagna 在韩国 [SIGPL Summer School 2019](https://sigpl.or.kr/school/2019s/) 的特邀讲座也很值得一看。
 
 <!--more-->
 
