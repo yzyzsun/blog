@@ -243,17 +243,15 @@ nav {
   }
 }
 
-.post {
-  blockquote {
-    margin: 1em 1em;
-    border-left: 2px solid $gray;
-    padding: 0.1em 1em;
-    color: $gray;
-  }
+blockquote {
+  margin: 1em 1em;
+  border-left: 2px solid $gray;
+  padding: 0.1em 1em;
+  color: $gray;
+}
 
-  .comments {
-    margin-top: 100px;
-  }
+.comments {
+  margin-top: 100px;
 }
 
 .wrapper-footer {
