@@ -54,7 +54,7 @@ instance Num Int where
 
 ## 参数多态
 
-「[参数多态]{parametric polymorphism}」在函数式编程中简称多态，其引入的类型参数允许我们在函数定义中使用类型变量，而不必为各种具体的类型定义不同的版本。譬如以 Haskell 语言为例，我们可以为所有类型定义一个统一的恒等函数：
+「[参数多态]{parametric polymorphism}」在函数式编程中简称多态，在面向对象编程中又称「[泛型]{generics}」。之所以叫参数多态是因为它引入了类型参数，譬如允许我们在函数定义中使用类型变量，而不必为各种具体的类型定义不同的版本。譬如以 Haskell 语言为例，我们可以为所有类型定义一个统一的恒等函数：
 
 ```haskell
 id :: a -> a
@@ -114,14 +114,14 @@ rev ['a'; 'b'; 'c'; 'd']
 
 ### Rank-N
 
-HM 类型系统只支持顶层的 Rank-1 多态，这对应于逻辑学中的「[前束范式]{prenex normal form}」。不少 Haskell 用户不满足于此，所以 GHC 提供了 [RankNTypes](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts/rank_polymorphism.html) 语言扩展支持 `->` 内层的 `forall`。因为 `forall` 出现在 `->` 右侧等价于出现在外层，所以真正有趣的情形是 `forall` 出现在 `->` 左侧：
+HM 类型系统只支持顶层的 Rank-1 多态，这对应于逻辑学中的「[前束范式]{prenex normal form}」。不少 Haskell 用户不满足于此，所以 GHC 提供了 [RankNTypes](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts/rank_polymorphism.html) 语言扩展支持 `->` 内层的 `forall`。因为 `forall` 出现在 `->` 右侧等价于出现在外层，如 `() -> forall a. a -> a` 等价于 `forall a. () -> a -> a`，所以真正有趣的情形是 `forall` 出现在 `->` 左侧：
 
 ```haskell
 hipoly :: (forall a. a -> a) -> (Bool, Char)
 hipoly f = (f True, f 'a')
 ```
 
-想要更强的表达能力也要付出相应的代价——Rank-3 及以上的完整类型推断已被证明是不可判定问题。不过在手动标注一些类型的前提下，GHC 仍然能够进行相当实用的类型推断，其算法在 Simon Peyton Jones 等人的 [JFP 2007](https://doi.org/10.1017/S0956796806006034) 论文中有详尽叙述。需要注意的是，就算开了扩展，`hipoly` 的类型签名也不能省略，因为 Haskell 的类型推断算法是基于 HM 的。
+想要更强的表达能力也要付出相应的代价——Rank-3 及以上的完整类型推断已被 A. J. Kfoury 和 J. B. Wells 在 [LFP 1994](https://doi.org/10.1145/182409.182456) 的论文中证明是不可能的。不过在手动标注一些类型的前提下，GHC 仍然能够进行相当实用的类型推断，其算法在 Simon Peyton Jones 等人的 [JFP 2007](https://doi.org/10.1017/S0956796806006034) 论文中有详尽叙述。需要注意的是，就算开了扩展，`hipoly` 的类型签名也不能省略，因为 Haskell 的类型推断算法默认函数参数以及模式匹配绑定的变量不是多态类型。
 
 ### 非直谓性
 
@@ -134,13 +134,11 @@ runST :: (forall s. ST s d) -> d
 runST $ do { …… }  -- a := (forall s. ST s d) -> d
 ```
 
-在这个例子中，`$` 运算符的类型参数 `a` 得实例化成一个多态类型，这样的多态就不是直谓性的。不过好在 GHC 对 `$` 的类型检查进行了特殊处理，这样写并不会报错；如果想亲眼目睹类型错误，可以试试没有经过特殊处理的 `id runST`。从另一个角度来看，直谓多态只支持在 `->` 类型运算符里嵌套多态类型，比如 `(forall a. a) -> ()`；而非直谓多态支持在任何多态类型里嵌套多态类型，比如 `[forall a. a]`。过去十几年来，GHC 的 [ImpredicativeTypes](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts/impredicative_types.html) 扩展都不太好用，最近 GHC 9.2 基于 [ICFP 2020](https://doi.org/10.1145/3408971) 论文中的 Quick Look 算法更好地支持了非直谓多态。在成功突破 HM 类型系统的两大限制之后，经过 GHC 扩展的 Haskell 已经能完整表达比 Hindley–Milner 更强大的 Girard–Reynolds 多态演算了，也就是大名鼎鼎的 System F。
+在这个例子中，`$` 运算符的类型参数 `a` 得实例化成一个多态类型，这样的多态就不是直谓性的。不过好在 GHC 对 `$` 的类型检查进行了特殊处理，这样写并不会报错；如果想亲眼目睹类型错误，可以试试没有经过特殊处理的 `id runST`。从另一个角度来看，直谓多态只支持在 `->` 类型运算符里嵌套多态类型，比如 `(forall a. a) -> ()`；而非直谓多态支持在任何多态类型里嵌套多态类型，比如 `[forall a. a]`。过去二十年来，非直谓多态系统的类型推断算是相对活跃的研究课题；GHC 也见证了研究的进展——[ImpredicativeTypes](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts/impredicative_types.html) 扩展以前是基于 [ICFP 2006](https://doi.org/10.1145/1159803.1159838) 论文实现的，可惜不太可靠，而最近 GHC 9.2 基于 [ICFP 2020](https://doi.org/10.1145/3408971) 论文中的 Quick Look 算法更好地支持了非直谓多态。在成功突破 HM 类型系统的两大限制之后，经过 GHC 扩展的 Haskell 已经能表达比 Hindley–Milner 更强大的 Girard–Reynolds 多态演算了，也就是大名鼎鼎的 System F。
 
-### 泛型
+### 实现
 
-提到「[泛型]{generics}」这个词，首先需要说明一下这里是指面向对象编程中的泛型编程，而不是 Haskell 中的「[[数据类型泛型编程]{datatype-generic programming}](https://wiki.haskell.org/Generics)」。理论上，面向对象编程中的泛型就是上面讲的参数多态，但泛型在各种语言中的设计千差万别，实现也不尽相同。
-
-泛型的两种主流实现方式是「[类型擦除]{type erasure}」和「[单态化]{monomorphization}」，前者以 Java 为代表，后者以 C++ 和 Go 为代表。值得一提的是，Java 5.0 和 Go 1.18 之前并没有泛型，它们的泛型特性都是在学术界的协助下追加的，这两项工作（名为 Featherweight Generic Java / Go）分别发表在 [OOPSLA 1999](https://doi.org/10.1145/320385.320395) 和 [OOPSLA 2020](https://doi.org/10.1145/3428217) 上。在 Java 中，泛型列表的两个实例 `List<Integer>` 和 `List<Boolean>` 都会翻译到 `List<Object>`；而 Go 则会将 `List[int]` 和 `List[bool]` 翻译到两个不同的单态类型。虽然单态化会生成更多的代码，但它生成的代码比 Java 擦除类型的代码更高效，因为 Java 泛型的类型变量一定都是装箱了的（即 `Object` 的派生类），而 Go 可以用原始类型来实例化类型变量。另一方面，Java 的类型转换不支持类型变量，譬如 `(a)x`；而 Go 支持等价的类型断言 `x.(a)`。
+虽然参数多态在函数式编程语言中大同小异，但泛型在面向对象编程语言中的设计千差万别，实现也不尽相同。泛型的两种主流实现方式是「[类型擦除]{type erasure}」和「[单态化]{monomorphization}」，前者以 [Java](https://openjdk.org/projects/valhalla/design-notes/in-defense-of-erasure)、[Haskell](https://gitlab.haskell.org/ghc/ghc/-/wikis/dependent-haskell) 为代表，后者以 [C++](https://en.cppreference.com/w/cpp/language/templates)、[Rust](https://davidtw.co/media/masters_dissertation.pdf)、[Go](https://github.com/golang/proposal/blob/master/design/generics-implementation-dictionaries-go1.18.md) 为代表。值得一提的是，Java 5.0 和 Go 1.18 之前并没有泛型，它们的泛型特性都是在学术界的协助下追加的，这两项工作（名为 Featherweight Generic {Java,Go}）分别发表在 [OOPSLA 1999](https://doi.org/10.1145/320385.320395) 和 [OOPSLA 2020](https://doi.org/10.1145/3428217) 上。在 Java 中，泛型列表的两个实例 `List<Integer>` 和 `List<Boolean>` 都会翻译到 `List<Object>`；而 Go 则会将 `List[int]` 和 `List[bool]` 翻译到两个不同的单态类型。虽然单态化会生成更多的代码，但它生成的代码比 Java 擦除类型的代码更高效，因为 Java 泛型的类型变量一定都是装箱了的（即 `Object` 的派生类），而 Go 可以用原始类型来实例化类型变量。另一方面，Java 的类型转换不支持类型变量，譬如 `(a)x`；而 Go 支持等价的类型断言 `x.(a)`。
 
 C++ 的泛型是通过模板实现的，模板的实例化相当于泛型的单态化。不过 C++ 的模板比一般的泛型更为强大：模板的参数并不局限于类型参数、参数可以有默认值、模板支持特化等等。其中模板特化可以说是参数多态和特设多态的结合体：
 
