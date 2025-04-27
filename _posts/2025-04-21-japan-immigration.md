@@ -48,11 +48,11 @@ ruby: true
 
 日本传统上有三大运营商：[NTT docomo](https://www.docomo.ne.jp)、[SoftBank](https://www.softbank.jp/mobile/)、[au](https://www.au.com/mobile/)，它们主推的无限流量套餐月租费含税在 7,315～7,458 日元上下，而 3GB 套餐月租费在 5,478～5,665 日元上下，如果没有折扣或者返现还是相当贵的。不过 SoftBank 旗下还有子品牌 [Y!mobile](https://www.ymobile.jp)，au 母公司 KDDI 旗下还有 [UQ mobile](https://www.uqwimax.jp)，这两家 4GB 套餐月租费都只要 2,365 日元。就在前几年，[乐天](https://network.mobile.rakuten.co.jp)也加入战场成为第四大运营商。乐天的定位有点像中国第四大运营商——广电，用低价攻占市场，其套餐 3GB 之内月租费仅 1,078 日元、用到无限流量也只要 3,278 日元，不过听说乐天的信号覆盖不及三大运营商。
 
-追求便宜的另一个选择是「格安SIM」，这种SIM卡的提供方往往是[虚拟运营商]{MVNO}，即自家没有基站而借用三大运营商的网络，因此很难保证高峰时段的网速。[IIJmio](https://www.iijmio.jp) 和 [mineo](https://mineo.jp) 大概是最有名的两家虚拟运营商，mineo 比较有意思的是它提供不限流量只限网速的套餐，比如 1.5Mbps 是 990 日元。我见过最便宜的是[日本通信](https://www.nihontsushin.com) 1GB 套餐，月租费只要 290 日元。为了与虚拟运营商竞争，三大运营商现在也推出了自己的廉价子品牌：NTT docomo 有 [irumo](https://irumo.docomo.ne.jp)，SoftBank 有 [LINEMO](https://www.linemo.jp)，而 KDDI 有 [povo](https://povo.jp)；这个 povo2.0 很有意思，跟香港的 3HK DIY 储值卡很像，没有月租费，可以自由选购各种时长的服务组合，称作[トッピング](https://povo.jp/topping-list)。
+追求便宜的另一个选择是「格安SIM」，这种SIM卡的提供方往往是[虚拟运营商]{MVNO}，即自家没有基站而借用三大运营商的网络，因此很难保证高峰时段的网速。[IIJmio](https://www.iijmio.jp) 和 [mineo](https://mineo.jp) 大概是最有名的两家虚拟运营商，mineo 比较有意思的是它提供不限流量只限网速的套餐，比如 1.5Mbps 是 990 日元。我见过最便宜的是[日本通信](https://www.nihontsushin.com) 1GB 套餐，月租费只要 290 日元。为了与虚拟运营商竞争，三大运营商现在也推出了自己的廉价子品牌：NTT docomo 有 [irumo](https://irumo.docomo.ne.jp)，SoftBank 有 [LINEMO](https://www.linemo.jp)，而 KDDI 有 [povo](https://povo.jp)；这个 povo2.0 很有意思，跟香港的 3HK DIY 储值卡很像，没有月租费，可以自由选购各种时长的服务组合，称作[トッピング](https://povo.jp/topping-list)，尤其适合不在日本的时候保号用。
 
 ## 光纤宽带
 
-办宽带的第一步是确认自家公寓拉了哪家的光纤，虽然听说索尼的「[NURO 光](https://www.nuro.jp)」口碑最好，但我住的公寓办都办不了。大多数公寓包括我住的都是 NTT FLET'S 的光纤线路，这个线路能选的宽带运营商非常多。因为是跟手机卡一起办的，所以我选的 SoftBank 全家桶，月租费能优惠 1,100 日元。我在 BIC CAMERA 池袋本店还返了将近五万积分，正好够买他们家 ORIGINAL BASIC 牌冰箱加洗衣机的新生活应援套装。「[SoftBank 光](https://www.softbank.jp/internet/sbhikari/)」面向公寓的千兆网是每月 4,730 日元（含路由器租赁费），我的公寓需要 NTT 上门施工，所以先寄来了个 Wi-Fi 盒子（雅称 SoftBank Air）用来临时上网。然而令我崩溃的是，施工时我发现他们接的是电话线口，也就是说所谓的光纤只到楼，入户走的是 VDSL 百兆网……
+办宽带的第一步是确认自家公寓拉了哪家的光纤，虽然听说索尼的「[NURO 光](https://www.nuro.jp)」口碑最好，但我住的公寓办都办不了。大多数公寓包括我住的都是 NTT FLET'S 的光纤线路，这个线路能选的宽带运营商非常多。因为是跟手机卡一起办的，所以我选的 SoftBank 全家桶，月租费能优惠 1,100 日元。我在 BIC CAMERA 池袋本店还返了将近五万积分，正好够买他们家 ORIGINAL BASIC 牌冰箱加洗衣机（这两个都是海尔贴牌）的新生活应援套装。「[SoftBank 光](https://www.softbank.jp/internet/sbhikari/)」面向公寓的千兆网是每月 4,730 日元（含路由器租赁费），我的公寓需要 NTT 上门施工，所以先寄来了个插着手机卡的 Wi-Fi 盒子（雅称 SoftBank Air）用来临时上网。然而令我崩溃的是，施工时我发现他们接的是电话线口，也就是说所谓的光纤只到楼，入户走的是 VDSL 百兆网……虽然延时和抖动比 SoftBank Air 好点，但网速其实并没有什么区别。
 
 ## 银行账户
 
@@ -64,9 +64,11 @@ ruby: true
 
 ## 个人编号卡
 
-开完银行账户基本上就走完移居日本第一周的必经之路了，但还有个证件现在不是必需但以后迟早得办：个人编号卡，通称「[マイ]{My}[ナンバー]{Number}[カード]{Card}」，是日本政府从2016年开始推行的身份证。
+开完银行账户基本上就走完移居日本第一周的必经之路了，但还有个证件现在不是必需但以后迟早得办：个人编号卡，通称「[マイ]{My}[ナンバー]{Number}[カード]{Card}」，是日本政府从2016年开始推行的身份证。有了个人编号卡之后，很多行政手续都能通过 [マイナポータル](https://myna.go.jp) 线上办理。从海外移居日本后三十天内可以申请[特急发行](https://www.kojinbango-card.go.jp/apprec/apply/express_apply/)，原则上一周就能收到，不过这个得去政府大楼不能去办事处。
 
 根据日本政府的[公告](https://www.gov-online.go.jp/article/202407/entry-6238.html)，2024年12月2日起健康保险证已不再发行，取而代之的是「マイナ保険証」，也就是拿登录过的个人编号卡当健康保险证用。话虽如此，就算没有个人编号卡，也能收到健康保险资格确认书，目前资格确认书能继续当原来的健康保险证用。
+
+根据警察厅交通局的[公告](https://www.npa.go.jp/bureau/traffic/r4kaisei_main.html)，2025年3月24日起个人编号卡可以作为驾照使用，即「マイナ免許証」。
 
 根据出入国在留管理厅的 [Q&A](https://www.moj.go.jp/isa/11_00051.html)，2026年6月21日前将推行在留卡和个人编号卡的一体化，一张「特定在留カード」即可实现两张卡的功能。因为个人编号卡不是强制的，所以办理此卡也不是在留者的义务。
 
